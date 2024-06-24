@@ -10,7 +10,7 @@ class GongAuthenticator(SimpleAuthenticator):
     @classmethod
     def create_for_stream(cls, stream) -> "GongAuthenticator":
         # Authentication
-        raw_credentials = f"{stream.config['access_key']}:{stream.config['access_key_secret']}"
+        raw_credentials = f"{stream.config['access_token']}:{stream.config['user_agent']}"
         auth_token = base64.b64encode(raw_credentials.encode()).decode("ascii")
         return cls(
             stream=stream,

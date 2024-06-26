@@ -6,7 +6,6 @@ import json
 import logging
 import singer_sdk.exceptions
 import singer.utils as singer_utils
-import config_helper
 from tap_gong.streams import CallsStream, CallTranscriptsStream, UsersStream
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
@@ -35,7 +34,6 @@ class TapGong(Tap):
             SDK currently doesn't have a way to compare or validate values in config file parameters other than 
             validating data type and optional or required filed. This solution was suggested by a Meltano expert.
         """
-        config_helper.extended_config_validation(self.config)
 
     def discover_streams(self) -> List[Stream]:
         """Return a list of discovered streams."""

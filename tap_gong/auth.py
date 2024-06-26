@@ -2,19 +2,18 @@
 
 import base64
 from singer_sdk.authenticators import SimpleAuthenticator
+from singer_sdk.authenticators import BearerTokenAuthenticator
 
 
-class GongAuthenticator(SimpleAuthenticator):
+class GongAuthenticator(BearerTokenAuthenticator):
     """Authenticator class for Gong."""
 
     @classmethod
     def create_for_stream(cls, stream) -> "GongAuthenticator":
-        # Authentication
-        raw_credentials = f"{stream.config['access_token']}:{stream.config['user_agent']}"
-        auth_token = base64.b64encode(raw_credentials.encode()).decode("ascii")
-        return cls(
-            stream=stream,
-            auth_headers={
-                "Authorization": f"Basic {auth_token}"
-            }
-        )
+        auth_token = stream.config['access_token']
+        return cls(stream=stream, token=auth_token)
+
+    @property
+    def auth_header(self) -> str:
+        return f"Bearer {self.token}"
+

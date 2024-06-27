@@ -5,8 +5,7 @@ from typing import List
 from singer_sdk import Tap, Stream
 from singer_sdk import typing as th  # JSON schema typing helpers
 import singer_sdk.exceptions
-import config_helper
-from streams import CallsStream, CallTranscriptsStream, UsersStream
+from tap_gong.streams import CallsStream, CallTranscriptsStream, UsersStream
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)

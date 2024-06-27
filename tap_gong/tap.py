@@ -28,7 +28,6 @@ class TapGong(Tap):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        config_helper.extended_config_validation(self.config)
 
     def discover_streams(self) -> List[Stream]:
         """Return a list of discovered streams."""

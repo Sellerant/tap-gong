@@ -14,7 +14,7 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class GongStream(RESTStream):
     """Gong stream class."""
 
-    url_base = "https://api.gong.io"
+    url_base = "https://acme.api.gong.io/"
     records_jsonpath = "$[*]"
     next_page_token_jsonpath = "$.records.cursor"
 
